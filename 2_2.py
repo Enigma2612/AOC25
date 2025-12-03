@@ -20,6 +20,3 @@ for i in ranges:
             ans += j
 
 print(ans)
-
-
-
