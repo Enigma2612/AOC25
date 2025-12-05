@@ -3,16 +3,11 @@ with open('Side Quests/joltage.txt') as f:
 
 adapters_list = sorted(list(map(int, data.splitlines())))
 adapters_list.insert(0,0)
+adapters_list.append(adapters_list[-1]+3)
 
-diff = {1:0, 2:0, 3:1}
+num_ways = [1] + [0]*adapters_list[-1]
 
-diff_list = [1] + [-1 for _ in range(len(data.splitlines())-1)] + [3]
+for val in adapters_list[1:]:
+    num_ways[val] = num_ways[val-1] + num_ways[val-2] + num_ways[val-3]
 
-for i in range(len(adapters_list)-1):
-    difference = adapters_list[i+1] - adapters_list[i]
-    diff[difference] += 1
-    diff_list[i+1] = difference
-
-print(diff[1]*diff[3])
-print(adapters_list)
-print(diff)
+print(num_ways[adapters_list[-1]])
